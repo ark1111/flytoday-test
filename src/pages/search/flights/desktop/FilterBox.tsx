@@ -53,6 +53,16 @@ const FilterBox = (props: Props) => {
           )}
         </div>
       ))}
+      <div className="w-full py-[16px] px-[16px]">
+        <div className="w-full h-[40px] flex items-center gap-x-2 px-2 border border-[#e6e6e6] rounded">
+          <img src="/icon/search-icon.png" className="w-[16px]" />
+          <input
+            type="text"
+            className="flex-1 h-full border-none outline-none bg-transparent text-[14px]"
+            placeholder="جستجوی شماره پرواز"
+          />
+        </div>
+      </div>
     </div>
   );
 };
