@@ -13,3 +13,9 @@ export interface FliterListItemType {
   min: null | number;
   max: null | number;
 }
+
+export interface sortItem {
+  id: number;
+  title: string;
+  value: string;
+}

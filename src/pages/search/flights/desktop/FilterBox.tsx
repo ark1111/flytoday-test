@@ -45,7 +45,6 @@ const FilterBox = (props: Props) => {
               className={`w-[24px] h-[24px] -translate-x-[6px] transition-all duration-200 ${
                 openBoxList.includes(item.id) ? "rotate-0" : "rotate-180"
               }`}
-              // style={{ tr: openBoxList.includes(item.id) ? 180 : 0 }}
             />
           </div>
           {openBoxList.includes(item.id) && (
