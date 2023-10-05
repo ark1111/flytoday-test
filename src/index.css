@@ -19,3 +19,9 @@ a{
 .ltr{
   direction: ltr !important;
 }
+
+/* input[type="checkbox"]{
+  border-color: #c6c6c6 !important;
+  border-radius: 4px !important;
+  outline: none !important;
+} */

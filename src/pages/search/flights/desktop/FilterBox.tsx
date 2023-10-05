@@ -1,57 +1,9 @@
-import React from "react";
+import { FliterListItemType } from "../../../../types";
+import CheckboxFilter from "../../../../components/CheckboxFilter";
+import { fliterList } from "../data";
+import RangeSliderFilter from "../../../../components/RangeSliderFilter";
 
 type Props = {};
-
-const fliterList = [
-  {
-    id: 1,
-    title: "محدوده قیمت",
-    type: "",
-    items: null,
-    min: null,
-    max: null,
-  },
-  {
-    id: 2,
-    title: "تعداد توقف",
-    type: "",
-    items: null,
-    min: null,
-    max: null,
-  },
-  {
-    id: 3,
-    title: "زمان حرکت",
-    type: "",
-    items: null,
-    min: null,
-    max: null,
-  },
-  {
-    id: 4,
-    title: "کلاس پروازی",
-    type: "",
-    items: null,
-    min: null,
-    max: null,
-  },
-  {
-    id: 5,
-    title: "نوع پرواز",
-    type: "",
-    items: null,
-    min: null,
-    max: null,
-  },
-  {
-    id: 6,
-    title: "ایرلاین ها",
-    type: "",
-    items: null,
-    min: null,
-    max: null,
-  },
-];
 
 const FilterBox = (props: Props) => {
   return (
@@ -74,6 +26,7 @@ const FilterBox = (props: Props) => {
               {item.title}
             </div>
           </div>
+          <div className="w-full">{filterTypeHandler(item)}</div>
         </div>
       ))}
     </div>
@@ -81,3 +34,12 @@ const FilterBox = (props: Props) => {
 };
 
 export default FilterBox;
+
+const filterTypeHandler = (info: FliterListItemType) => {
+  let newObj: { [key: string]: JSX.Element } = {
+    checkbox: <CheckboxFilter info={info} />,
+    range: <RangeSliderFilter info={info} />,
+  };
+
+  return newObj[info.type];
+};
