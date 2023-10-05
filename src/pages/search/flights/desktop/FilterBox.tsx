@@ -2,10 +2,22 @@ import { FliterListItemType } from "../../../../types";
 import CheckboxFilter from "../../../../components/CheckboxFilter";
 import { fliterList } from "../data";
 import RangeSliderFilter from "../../../../components/RangeSliderFilter";
+import { useState } from "react";
 
 type Props = {};
 
 const FilterBox = (props: Props) => {
+  const [openBoxList, setOpenBoxList] = useState<number[]>([1, 2, 3, 4, 5, 6]);
+
+  const openBoxHandler = (id: number) => {
+    let newList = [...openBoxList];
+    if (newList.includes(id)) {
+      newList = newList.filter((item) => item !== id);
+    } else {
+      newList.push(id);
+    }
+    setOpenBoxList(newList);
+  };
   return (
     <div className="w-full mt-[24px] bg-[#fff]">
       {/* ------header---------- */}
@@ -21,12 +33,24 @@ const FilterBox = (props: Props) => {
           key={item.id}
           className="w-full py-[16px] px-[16px] border-b border-[#eeeeee]"
         >
-          <div className="w-full flex items-center justify-between cursor-pointer">
+          <div
+            className="w-full flex items-center justify-between cursor-pointer"
+            onClick={() => openBoxHandler(item.id)}
+          >
             <div className="text-[14px] text-[#464646] font-bold">
               {item.title}
             </div>
+            <img
+              src="/icon/small-down.png"
+              className={`w-[24px] h-[24px] -translate-x-[6px] transition-all duration-200 ${
+                openBoxList.includes(item.id) ? "rotate-0" : "rotate-180"
+              }`}
+              // style={{ tr: openBoxList.includes(item.id) ? 180 : 0 }}
+            />
           </div>
-          <div className="w-full">{filterTypeHandler(item)}</div>
+          {openBoxList.includes(item.id) && (
+            <div className="w-full">{filterTypeHandler(item)}</div>
+          )}
         </div>
       ))}
     </div>
