@@ -4,14 +4,12 @@ import { useState, useEffect } from "react";
 type Props = {};
 
 const ResultsValidity = (props: Props) => {
-  const totalTime = 300;
+  const totalTime = 100;
   const [timer, setTimer] = useState(totalTime);
 
   useEffect(() => {
     let newInterval = setInterval(() => {
-      if (timer > 0) {
-        setTimer((oldTimer) => oldTimer - 1);
-      }
+      setTimer((oldTimer) => (oldTimer > 0 ? oldTimer - 1 : 0));
     }, 1000);
 
     return () => {
