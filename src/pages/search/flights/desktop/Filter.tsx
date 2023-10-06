@@ -2,13 +2,26 @@ import React from "react";
 import ResultsValidity from "./ResultsValidity";
 import FilterBox from "./FilterBox";
 
-type Props = {};
+type Props = {
+  filterValueList: { id: number; values: number[] }[];
+  setFilterValueList: React.Dispatch<
+    React.SetStateAction<
+      {
+        id: number;
+        values: number[];
+      }[]
+    >
+  >;
+};
 
-const Filter = (props: Props) => {
+const Filter = ({ filterValueList, setFilterValueList }: Props) => {
   return (
     <div className="w-[282px]">
       <ResultsValidity />
-      <FilterBox/>
+      <FilterBox
+        filterValueList={filterValueList}
+        setFilterValueList={setFilterValueList}
+      />
     </div>
   );
 };

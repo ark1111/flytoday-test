@@ -4,9 +4,19 @@ import { fliterList } from "../data";
 import RangeSliderFilter from "../../../../components/RangeSliderFilter";
 import { useState } from "react";
 
-type Props = {};
+type Props = {
+  filterValueList: { id: number; values: number[] }[];
+  setFilterValueList: React.Dispatch<
+    React.SetStateAction<
+      {
+        id: number;
+        values: number[];
+      }[]
+    >
+  >;
+};
 
-const FilterBox = (props: Props) => {
+const FilterBox = ({ filterValueList, setFilterValueList }: Props) => {
   const [openBoxList, setOpenBoxList] = useState<number[]>([1, 2, 3, 4, 5, 6]);
 
   const openBoxHandler = (id: number) => {
@@ -18,6 +28,7 @@ const FilterBox = (props: Props) => {
     }
     setOpenBoxList(newList);
   };
+
   return (
     <div className="w-full mt-[24px] bg-[#fff]">
       {/* ------header---------- */}
@@ -48,7 +59,9 @@ const FilterBox = (props: Props) => {
             />
           </div>
           {openBoxList.includes(item.id) && (
-            <div className="w-full">{filterTypeHandler(item)}</div>
+            <div className="w-full">
+              {filterTypeHandler(item, filterValueList, setFilterValueList)}
+            </div>
           )}
         </div>
       ))}
@@ -68,10 +81,33 @@ const FilterBox = (props: Props) => {
 
 export default FilterBox;
 
-const filterTypeHandler = (info: FliterListItemType) => {
+const filterTypeHandler = (
+  info: FliterListItemType,
+  filterValueList: { id: number; values: number[] }[],
+  setFilterValueList: React.Dispatch<
+    React.SetStateAction<
+      {
+        id: number;
+        values: number[];
+      }[]
+    >
+  >
+) => {
   let newObj: { [key: string]: JSX.Element } = {
-    checkbox: <CheckboxFilter info={info} />,
-    range: <RangeSliderFilter info={info} />,
+    checkbox: (
+      <CheckboxFilter
+        info={info}
+        filterValueList={filterValueList}
+        setFilterValueList={setFilterValueList}
+      />
+    ),
+    range: (
+      <RangeSliderFilter
+        info={info}
+        filterValueList={filterValueList}
+        setFilterValueList={setFilterValueList}
+      />
+    ),
   };
 
   return newObj[info.type];

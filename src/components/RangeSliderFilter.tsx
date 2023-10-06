@@ -4,9 +4,22 @@ import { Slider } from "@mui/material";
 
 type Props = {
   info: FliterListItemType;
+  filterValueList: { id: number; values: number[] }[];
+  setFilterValueList: React.Dispatch<
+    React.SetStateAction<
+      {
+        id: number;
+        values: number[];
+      }[]
+    >
+  >;
 };
 
-const RangeSliderFilter = ({ info }: Props) => {
+const RangeSliderFilter = ({
+  info,
+  filterValueList,
+  setFilterValueList,
+}: Props) => {
   const [value, setValue] = useState<number[]>([
     info.min || 0,
     info.max || 1000000,
