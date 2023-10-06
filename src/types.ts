@@ -21,6 +21,7 @@ export interface sortItem {
 }
 
 export interface FlightSearchItemInfoType {
+  id:number
   isPassportMandatory: boolean;
   isDestinationAddressMandatory: boolean;
   isPassportIssueDateMandatory: boolean;

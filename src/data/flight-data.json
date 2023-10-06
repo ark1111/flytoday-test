@@ -2,6 +2,7 @@
     "searchId": 84303,
     "pricedItineraries": [
         {
+            "id":1,
             "isPassportMandatory": true,
             "isDestinationAddressMandatory": false,
             "isPassportIssueDateMandatory": false,
@@ -77,6 +78,7 @@
             "featured": null
         },
         {
+            "id":2,
             "isPassportMandatory": true,
             "isDestinationAddressMandatory": false,
             "isPassportIssueDateMandatory": false,
@@ -152,6 +154,7 @@
             "featured": null
         },
         {
+            "id":3,
             "isPassportMandatory": true,
             "isDestinationAddressMandatory": false,
             "isPassportIssueDateMandatory": false,

@@ -13,7 +13,7 @@ const Results = (props: Props) => {
     <div className="w-[calc(100%-306px)]">
       <ResultsHeader />
       {sampleData.pricedItineraries.map((item, index) => (
-        <div className="w-full">
+        <div className="w-full" key={item.id}>
           <FlightSearchItem />
         </div>
       ))}
