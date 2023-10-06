@@ -2,9 +2,11 @@ import { useState } from "react";
 import { sortList } from "../data";
 import { sortItem } from "../../../../types";
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
-const ResultsHeader = (props: Props) => {
+const ResultsHeader = ({ data }: Props) => {
   const [sort, setSort] = useState(sortList[0]);
   const [showSortList, setShowSortList] = useState(false);
 
@@ -20,14 +22,16 @@ const ResultsHeader = (props: Props) => {
     e.stopPropagation();
     setShowSortList(false);
   };
+
   return (
     <div className="w-full">
       <div className="text-[20px] text-[#464646] font-bold">
-        بلیط هواپیمای تهران به استانبول
+        بلیط هواپیمای تهران به مشهد
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="text-[14px] text-[#464646]">
-          27 پرواز یافت شد . سه‌شنبه، 12 اردیبهشت 1400
+          {data.pricedItineraries?.length} پرواز یافت شد . پنج‌شنبه، 19 اسفند
+          1400
         </div>
         <div className="flex items-center gap-x-[14px]">
           <div className="text-[14px] text-[#8d8d8d]">مرتب‌سازی:</div>

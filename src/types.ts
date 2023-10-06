@@ -21,7 +21,7 @@ export interface sortItem {
 }
 
 export interface FlightSearchItemInfoType {
-  id:number
+  id: number;
   isPassportMandatory: boolean;
   isDestinationAddressMandatory: boolean;
   isPassportIssueDateMandatory: boolean;
@@ -59,7 +59,7 @@ export interface FlightSearchItemInfoType {
     }[];
     fareInfoes: never[];
   };
-  originDestinationOption: {
+  originDestinationOptions: {
     journeyDurationPerMinut: number;
     connectionTimePerMinut: number;
     flightSegment: {
@@ -87,6 +87,24 @@ export interface FlightSearchItemInfoType {
       baggage: null;
       technicalStops: [];
     }[];
-    featured: null;
+  }[];
+  featured: null;
+}
+
+export interface PtcFareBreakdownItemType {
+  passengerFare: {
+    baseFare: number;
+    totalFare: number;
+    serviceTax: number;
+    taxes: never[];
+    total: number;
+    tax: number;
+    vat: number;
+    baseFareWithMarkup: number;
+    totalFareWithMarkupAndVat: number;
+  };
+  passengerTypeQuantity: {
+    passengerType: string;
+    quantity: number;
   };
 }

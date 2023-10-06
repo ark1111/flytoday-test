@@ -1,15 +1,17 @@
+import React from "react";
+import DesktopSearchResults from "./desktop";
+import MobileSearchResults from "./mobile";
 
-import React from 'react'
-import DesktopSearchResults from './desktop'
+type Props = {
+  isMobile: boolean;
+};
 
-type Props = {}
-
-const FlightsSearchResluts = (props: Props) => {
+const FlightsSearchResluts = ({ isMobile }: Props) => {
   return (
-    <div className='w-full'>
-        <DesktopSearchResults/>
+    <div className="w-full">
+      {isMobile ? <MobileSearchResults /> : <DesktopSearchResults />}
     </div>
-  )
-}
+  );
+};
 
-export default FlightsSearchResluts
+export default FlightsSearchResluts;
