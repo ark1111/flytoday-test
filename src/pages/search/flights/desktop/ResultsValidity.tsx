@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 type Props = {};
 
 const ResultsValidity = (props: Props) => {
-  const totalTime = 3000;
+  const totalTime = 300;
   const [timer, setTimer] = useState(totalTime);
 
   useEffect(() => {
