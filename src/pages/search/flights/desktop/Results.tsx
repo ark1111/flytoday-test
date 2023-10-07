@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FlightSearchItem from "./FlightSearchItem";
 import ResultsHeader from "./ResultsHeader";
 import sampleData from "../../../../data/flight-data.json";
 import Pagination from "../../../../components/Pagination";
+import { filterFunction } from "../../../../functions";
 
-type Props = {};
+type Props = {
+  filterValueList: { id: number; values: number[] }[];
+};
 
-const Results = (props: Props) => {
+const Results = ({ filterValueList }: Props) => {
   const [data, setData] = useState(sampleData);
-  const [activePage,setActivePage]=useState(1);
+  const [activePage, setActivePage] = useState(1);
+
+  //filter data-----------------------------
+  useEffect(() => {
+    if (filterValueList.length > 0) {
+      let newData = { ...data };
+      let newList = filterFunction(sampleData, filterValueList);
+      newData.pricedItineraries = [...newList];
+      setData(newData);
+    } else {
+      setData(sampleData);
+    }
+  }, [filterValueList]);
+  //-----------------------------------------
 
   const findAirlineName = (code: string): string => {
     let name = "";
@@ -47,7 +63,11 @@ const Results = (props: Props) => {
         </div>
       ))}
       <div className="w-full flex justify-center mt-[32px]">
-        <Pagination activePage={activePage} setActivePage={setActivePage} totalPage={7}/>
+        <Pagination
+          activePage={activePage}
+          setActivePage={setActivePage}
+          totalPage={7}
+        />
       </div>
     </div>
   );

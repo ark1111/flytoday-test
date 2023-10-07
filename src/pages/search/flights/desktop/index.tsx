@@ -17,7 +17,7 @@ const DesktopSearchResults = (props: Props) => {
         filterValueList={filterValueList}
         setFilterValueList={setFilterValueList}
       />
-      <Results />
+      <Results filterValueList={filterValueList}/>
     </div>
   );
 };
