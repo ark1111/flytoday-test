@@ -44,9 +44,13 @@ const Pagination = ({ activePage, setActivePage, totalPage }: Props) => {
           {item + step * 5 <= totalPage && (
             <div
               className={`w-[35px] h-[35px] bg-[#fff] rounded flex items-center justify-center text-[14px] text-[#464646] cursor-pointer ${
-                activePage === item + step * 5 ? "bg-[#1773dc] text-[#fff]" : ""
+                activePage === item + step * 5 ? "text-[#fff]" : ""
               }`}
               onClick={() => changePage(item)}
+              style={{
+                backgroundColor:
+                  activePage === item + step * 5 ? "#1773dc" : "#fff",
+              }}
             >
               {item + step * 5}
             </div>
