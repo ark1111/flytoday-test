@@ -148,11 +148,11 @@ export const sortList = [
   {
     id: 3,
     title: "زودترین",
-    value: "price-asc",
+    value: "time-asc",
   },
   {
     id: 4,
     title: "دیرترین",
-    value: "price-des",
+    value: "time-des",
   },
 ];

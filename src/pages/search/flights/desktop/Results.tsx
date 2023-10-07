@@ -3,7 +3,8 @@ import FlightSearchItem from "./FlightSearchItem";
 import ResultsHeader from "./ResultsHeader";
 import sampleData from "../../../../data/flight-data.json";
 import Pagination from "../../../../components/Pagination";
-import { filterFunction } from "../../../../functions";
+import { filterFunction, sortHandler } from "../../../../functions";
+import { sortList } from "../data";
 
 type Props = {
   filterValueList: { id: number; values: number[] }[];
@@ -12,6 +13,7 @@ type Props = {
 const Results = ({ filterValueList }: Props) => {
   const [data, setData] = useState(sampleData);
   const [activePage, setActivePage] = useState(1);
+  const [sort, setSort] = useState(sortList[0]);
 
   //filter data-----------------------------
   useEffect(() => {
@@ -25,6 +27,14 @@ const Results = ({ filterValueList }: Props) => {
     }
   }, [filterValueList]);
   //-----------------------------------------
+
+  //sort------------------------
+  useEffect(() => {
+    let newData = { ...data };
+    let newList = sortHandler(newData.pricedItineraries, sort);
+    newData.pricedItineraries = [...newList];
+    setData(newData);
+  }, [sort]);
 
   const findAirlineName = (code: string): string => {
     let name = "";
@@ -52,7 +62,7 @@ const Results = ({ filterValueList }: Props) => {
   };
   return (
     <div className="w-[calc(100%-306px)]">
-      <ResultsHeader data={data} />
+      <ResultsHeader data={data} sort={sort} setSort={setSort} />
       {data.pricedItineraries.map((item, index) => (
         <div className="w-full" key={item.id}>
           <FlightSearchItem

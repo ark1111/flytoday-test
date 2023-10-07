@@ -4,10 +4,18 @@ import { sortItem } from "../../../../types";
 
 type Props = {
   data: any;
+  sort: sortItem;
+  setSort: React.Dispatch<
+    React.SetStateAction<{
+      id: number;
+      title: string;
+      value: string;
+    }>
+  >;
 };
 
-const ResultsHeader = ({ data }: Props) => {
-  const [sort, setSort] = useState(sortList[0]);
+const ResultsHeader = ({ data, sort, setSort }: Props) => {
+  // const [sort, setSort] = useState(sortList[0]);
   const [showSortList, setShowSortList] = useState(false);
 
   const showListHandler = () => {

@@ -1,3 +1,5 @@
+import { sortItem } from "./types";
+
 export const filterFunction = (
   orginalData: any,
   filterValueList: { id: number; values: number[] }[]
@@ -114,6 +116,46 @@ export const filterFunction = (
     if (permission) {
       newList.push(list[i]);
     }
+  }
+  return newList;
+};
+
+export const sortHandler = (list: any[], sort: sortItem) => {
+  let newList = [...list];
+  if (sort.value === "price-asc") {
+    newList.sort((a, b) => {
+      return (
+        a.airItineraryPricingInfo.itinTotalFare.totalFare -
+        b.airItineraryPricingInfo.itinTotalFare.totalFare
+      );
+    });
+  } else if (sort.value === "price-des") {
+    newList.sort((a, b) => {
+      return (
+        b.airItineraryPricingInfo.itinTotalFare.totalFare -
+        a.airItineraryPricingInfo.itinTotalFare.totalFare
+      );
+    });
+  } else if (sort.value === "time-asc") {
+    newList.sort((a, b) => {
+      let d1 = new Date(
+        a.originDestinationOptions[0].flightSegments[0].departureDateTime
+      );
+      let d2 = new Date(
+        b.originDestinationOptions[0].flightSegments[0].departureDateTime
+      );
+      return d1.getTime() - d2.getTime();
+    });
+  } else if (sort.value === "time-des") {
+    newList.sort((a, b) => {
+      let d1 = new Date(
+        b.originDestinationOptions[0].flightSegments[0].departureDateTime
+      );
+      let d2 = new Date(
+        a.originDestinationOptions[0].flightSegments[0].departureDateTime
+      );
+      return d1.getTime() - d2.getTime();
+    });
   }
   return newList;
 };
